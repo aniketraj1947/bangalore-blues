@@ -15,6 +15,7 @@
 	<name>Bangalore Blues</name>
 	<description>Flat hunting in Bangalore</description>
 	<modules>
+		<module>application</module>
 		<module>scrapper</module>
 	</modules>
 	<properties>
