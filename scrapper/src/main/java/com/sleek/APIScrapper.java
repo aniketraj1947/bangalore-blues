@@ -24,12 +24,12 @@ public class APIScrapper extends Scrapper {
     /**
      * Performs a GET request to the specified API endpoint with parameters.
      *
-     * @param apiUrl The API endpoint URL.
      * @return The API response as a string.
      * @throws IOException if an IO error occurs during the request.
      */
-    public String getResponseForGETRequest(final String apiUrl) throws IOException {
-        final StringBuilder urlBuilder = new StringBuilder(apiUrl);
+    @Override
+    public String getResponseForGETRequest() throws IOException {
+        final StringBuilder urlBuilder = new StringBuilder(url);
         urlBuilder.append(ADD_QUERY);
         params.entrySet().stream().forEach(param ->
                 urlBuilder.append(param.getKey()).append(EQUALS).append(param.getValue()).append(PARAMS_SEPARATOR));
@@ -50,5 +50,15 @@ public class APIScrapper extends Scrapper {
             throw new HttpStatusException("Invalid response received",
                     connection.getResponseCode(), urlBuilder.toString());
         }
+    }
+
+    @Override
+    public String getResponseForPOSTRequest() throws IOException {
+        throw new UnsupportedOperationException("POST API not implemented");
+    }
+
+    @Override
+    public String getResponseForPUTRequest() throws IOException {
+        throw new UnsupportedOperationException("PUT API implemented");
     }
 }
