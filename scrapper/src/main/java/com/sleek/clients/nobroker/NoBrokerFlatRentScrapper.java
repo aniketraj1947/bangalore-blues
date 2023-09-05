@@ -20,13 +20,15 @@ import static com.sleek.clients.nobroker.FilterAttribute.SEARCH_PARAM;
 import static com.sleek.clients.nobroker.FilterAttribute.SHARED_ACCOMODATION;
 
 /**
+ * Example for search query params
+ * <p>
  * pageNo: 1
  * searchParam: W3sibGF0IjoxMi45MzUxOTI5LCJsb24iOjc3LjYyNDQ4MDY5OTk5OTk5LCJwbGFjZUlkIjoiQ2hJSkxmeVkyRTRVcmpzUlZxNEFqSTd6Z1JZIiwicGxhY2VOYW1lIjoiS29yYW1hbmdhbGEifV0=
  * radius: 2.0
  * sharedAccomodation: 0
  * city: bangalore
  * locality: Koramangala
- *
+ * <p>
  * W3sibGF0IjoxMi45MzUxOTI5LCJsb24iOjc3LjYyNDQ4MDY5OTk5OTk5LCJwbGFjZUlkIjoiQ2hJSkxmeVkyRTRVcmpzUlZxNEFqSTd6Z1JZIiwicGxhY2VOYW1lIjoiS29yYW1hbmdhbGEifV0
  * [{"lat":12.9351929,"lon":77.62448069999999,"placeId":"ChIJLfyY2E4UrjsRVq4AjI7zgRY","placeName":"Koramangala"}]
  * ChIJLfyY2E4UrjsRVq4AjI7zgRY
