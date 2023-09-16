@@ -19,13 +19,13 @@ public class NoBrokerFlatRentScrapperTest {
         final String city = "bangalore";
         final String locality = "JP Nagar";
         Assert.assertEquals("W3sibGF0IjoiMTIuOTM1MTkyOSIsImxvbiI6Ijc3LjYyNDQ4MDY5OTk5OTk5IiwicGxhY2VJZCI6IkNoSUpLNmRKY3cwVnJqc1JSajNkNGFFLTBQTSIsInBsYWNlTmFtZSI6IkpQIE5hZ2FyIn1d",
-                NoBrokerFlatRentScrapper.QueryParams.getSearchParam(city, locality));
+                QueryParams.getSearchParam(city, locality));
     }
 
     @Test
     public void testNoBrokerScrapper() throws Exception {
-        final NoBrokerFlatRentScrapper scrapper = new NoBrokerFlatRentScrapper("bangalore", "Devanahalli");
-        System.out.println(scrapper.getResponse());
+        final NoBrokerFlatRentScrapper scrapper = new NoBrokerFlatRentScrapper("bangalore", "Whitefield");
+        scrapper.getResponse();
     }
 
     @Test
