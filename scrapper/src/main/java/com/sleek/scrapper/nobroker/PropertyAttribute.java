@@ -1,7 +1,4 @@
-package com.sleek.clients.nobroker;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+package com.sleek.scrapper.nobroker;
 
 public enum PropertyAttribute {
     PROPERTY_AGE("propertyAge"),

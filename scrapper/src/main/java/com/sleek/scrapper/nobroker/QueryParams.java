@@ -1,20 +1,20 @@
-package com.sleek.clients.nobroker;
+package com.sleek.scrapper.nobroker;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sleek.CityLocalityHelper;
+import com.sleek.common.CityLocalityHelper;
 
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static com.sleek.clients.nobroker.FilterAttribute.CITY;
-import static com.sleek.clients.nobroker.FilterAttribute.LOCALITY;
-import static com.sleek.clients.nobroker.FilterAttribute.PAGE;
-import static com.sleek.clients.nobroker.FilterAttribute.RADIUS;
-import static com.sleek.clients.nobroker.FilterAttribute.SEARCH_PARAM;
-import static com.sleek.clients.nobroker.FilterAttribute.SHARED_ACCOMODATION;
+import static com.sleek.scrapper.nobroker.FilterAttribute.CITY;
+import static com.sleek.scrapper.nobroker.FilterAttribute.LOCALITY;
+import static com.sleek.scrapper.nobroker.FilterAttribute.PAGE;
+import static com.sleek.scrapper.nobroker.FilterAttribute.RADIUS;
+import static com.sleek.scrapper.nobroker.FilterAttribute.SEARCH_PARAM;
+import static com.sleek.scrapper.nobroker.FilterAttribute.SHARED_ACCOMODATION;
 
 public final class QueryParams {
     private static final double LAT_DEFAULT = 12.9351929;

@@ -1,7 +1,9 @@
-package com.sleek.clients.nobroker;
+package com.sleek.scrapper.nobroker.clients;
 
-import com.sleek.APIScrapper;
-import com.sleek.Scrapper;
+import com.sleek.scrapper.nobroker.APIScrapper;
+import com.sleek.scrapper.nobroker.PropertyAttribute;
+import com.sleek.scrapper.nobroker.QueryParams;
+import com.sleek.scrapper.nobroker.Scrapper;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;

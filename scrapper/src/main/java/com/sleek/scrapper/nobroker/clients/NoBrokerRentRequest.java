@@ -1,4 +1,4 @@
-package com.sleek.clients.nobroker;
+package com.sleek.scrapper.nobroker.clients;
 
 public class NoBrokerRentRequest {
     private final String city;

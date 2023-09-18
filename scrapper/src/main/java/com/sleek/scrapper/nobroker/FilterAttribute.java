@@ -1,4 +1,4 @@
-package com.sleek.clients.nobroker;
+package com.sleek.scrapper.nobroker;
 
 public enum FilterAttribute {
     PAGE("pageNo"),

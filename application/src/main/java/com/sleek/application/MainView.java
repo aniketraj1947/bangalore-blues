@@ -1,5 +1,6 @@
-package com.sleek.predators;
+package com.sleek.application;
 
+import com.sleek.model.Property;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;

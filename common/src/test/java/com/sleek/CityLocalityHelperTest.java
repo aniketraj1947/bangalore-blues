@@ -1,5 +1,6 @@
 package com.sleek;
 
+import com.sleek.common.CityLocalityHelper;
 import org.junit.Assert;
 import org.junit.Test;
 
