@@ -1,4 +1,6 @@
-package com.sleek.clients.nobroker;
+package com.sleek.scrapper.nobroker.clients;
+
+import com.sleek.scrapper.nobroker.PropertyAttribute;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

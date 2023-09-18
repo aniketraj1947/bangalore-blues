@@ -1,4 +1,4 @@
-package com.sleek;
+package com.sleek.common;
 
 import java.util.Arrays;
 import java.util.Optional;

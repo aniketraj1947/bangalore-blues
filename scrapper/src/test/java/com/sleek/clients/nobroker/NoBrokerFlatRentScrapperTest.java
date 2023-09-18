@@ -1,6 +1,8 @@
 package com.sleek.clients.nobroker;
 
-import com.sleek.CityLocalityHelper;
+import com.sleek.common.CityLocalityHelper;
+import com.sleek.scrapper.nobroker.clients.NoBrokerFlatRentScrapper;
+import com.sleek.scrapper.nobroker.QueryParams;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;

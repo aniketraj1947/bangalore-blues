@@ -1,4 +1,4 @@
-package com.sleek;
+package com.sleek.scrapper.nobroker;
 
 import java.io.IOException;
 
