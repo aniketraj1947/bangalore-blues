@@ -73,8 +73,6 @@ public class NoBrokerFlatRentScrapper {
                     }
                     response.addEntry(attribute, attributeValue.toString());
                 });
-                System.out.println("dataLen " + dataLen.get());
-                System.out.println("errorLen " + errorLen.get());
             }
         } catch (final Exception e) {
             logger.error("Unable to get response for params {}", params, e);
