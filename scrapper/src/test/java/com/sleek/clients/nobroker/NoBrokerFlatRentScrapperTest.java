@@ -33,7 +33,7 @@ public class NoBrokerFlatRentScrapperTest {
     @Test
     @Ignore
     public void getPlaceIdScrapper() throws Exception {
-        final NoBrokerFlatRentScrapper scrapper = new NoBrokerFlatRentScrapper("pune", "balewadi");
+//        final NoBrokerFlatRentScrapper scrapper = new NoBrokerFlatRentScrapper("pune", "balewadi");
         // System.out.println(scrapper.getResponse());
         final String url = "https://www.google.com/maps/place/";
         final String suffix = "+Bangalore";
