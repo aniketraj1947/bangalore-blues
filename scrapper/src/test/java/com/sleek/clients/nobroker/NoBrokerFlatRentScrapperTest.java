@@ -1,8 +1,10 @@
 package com.sleek.clients.nobroker;
 
 import com.sleek.common.CityLocalityHelper;
+import com.sleek.scrapper.nobroker.PropertyAttribute;
 import com.sleek.scrapper.nobroker.clients.NoBrokerFlatRentScrapper;
 import com.sleek.scrapper.nobroker.QueryParams;
+import com.sleek.scrapper.nobroker.clients.NoBrokerRentResponseBuilder;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -12,7 +14,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class NoBrokerFlatRentScrapperTest {
 
@@ -25,8 +28,23 @@ public class NoBrokerFlatRentScrapperTest {
     }
 
     @Test
+    public void testAllLocalities() throws Exception {
+        final String city = "bangalore";
+        final String locality = "Electronic City";
+        final List<Map<PropertyAttribute, String>> globalList = new ArrayList<>();
+        for (int i = 1; i <= 40; ++i) {
+            final NoBrokerFlatRentScrapper scrapper = new NoBrokerFlatRentScrapper(city, locality, i);
+            System.out.println("For page " + i + " got these many flats " + scrapper.getResponse().getResponseMap().size());
+            globalList.addAll(scrapper.getResponse().getResponseMap());
+            Thread.sleep(1000);
+        }
+        System.out.println("OK!?");
+        System.out.println((long) new HashSet<>(globalList.stream().map(e -> e.get(PropertyAttribute.valueOf("SHORT_URL"))).collect(Collectors.toList())).size());
+    }
+
+    @Test
     public void testNoBrokerScrapper() throws Exception {
-        final NoBrokerFlatRentScrapper scrapper = new NoBrokerFlatRentScrapper("bangalore", "Whitefield");
+        final NoBrokerFlatRentScrapper scrapper = new NoBrokerFlatRentScrapper("bangalore", "Whitefield", 1);
         scrapper.getResponse();
     }
 

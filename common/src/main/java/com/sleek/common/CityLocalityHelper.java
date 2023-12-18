@@ -46,7 +46,6 @@ public class CityLocalityHelper {
         } catch (final IOException e) {
             logger.error("Error while populate locality data for {}", city, e);
         }
-        logger.info("Added {} localities for {}", localities.size(), city);
     }
 
     public City getCity() {

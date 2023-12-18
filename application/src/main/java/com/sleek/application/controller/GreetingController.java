@@ -1,9 +1,7 @@
 package com.sleek.application.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -14,6 +12,11 @@ public class GreetingController {
     public String greeting (Map<String, Object> model) {
         model.put("message", "Hello there");
         return "Bangalore Blue Project Details";
+    }
+
+    @PostMapping("processLocality")
+    public String processLocality(@RequestParam("selectedLocality") String selectedLocality) {
+        return "You selected" + selectedLocality;
     }
 
 }

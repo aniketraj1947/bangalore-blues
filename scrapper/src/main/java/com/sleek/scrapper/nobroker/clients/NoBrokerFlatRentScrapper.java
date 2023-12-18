@@ -13,6 +13,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -39,12 +41,14 @@ public class NoBrokerFlatRentScrapper {
     private final Scrapper scrapper;
     private final QueryParams params;
 
-    public NoBrokerFlatRentScrapper(final String city, final String locality) throws Exception {
-        this.params = new QueryParams(city, locality);
+    public NoBrokerFlatRentScrapper(final String city,
+                                    final String locality,
+                                    final int page) throws Exception {
+        this.params = new QueryParams(city, locality, page);
         this.scrapper = new APIScrapper(API_ENDPOINT, params.getQueryParamsMap());
     }
 
-    public void getResponse() {
+    public NoBrokerRentResponseBuilder getResponse() {
         try {
             final String apiResponseText = scrapper.getResponseForGETRequest();
             final Document responseDocument = Jsoup.parse(apiResponseText);
@@ -58,24 +62,26 @@ public class NoBrokerFlatRentScrapper {
             final NoBrokerRentResponseBuilder response = new NoBrokerRentResponseBuilder(
                     new NoBrokerRentRequest(params.getCity(), params.getLocality()));
 
-            System.out.println("json array " + String.valueOf(jsonDataArray.length()));
             for (int i = 0; i < jsonDataArray.length(); ++i) {
                 final int idx = i;
-                final StringBuilder attributeValue = new StringBuilder();
                 final AtomicInteger dataLen = new AtomicInteger();
                 final AtomicInteger errorLen = new AtomicInteger();
+                final Map<PropertyAttribute, String> propertyDetails = new HashMap<>();
                 Arrays.stream(PropertyAttribute.values()).forEach(attribute -> {
                     try {
-                        attributeValue.append(new JSONObject(jsonDataArray.get(idx).toString()).get(attribute.getString()).toString());
+                        propertyDetails.put(attribute, new JSONObject(jsonDataArray.get(idx).toString()).get(attribute.getString()).toString());
                         dataLen.incrementAndGet();
                     } catch (final JSONException ignored) {
                         errorLen.incrementAndGet();
                     }
-                    response.addEntry(attribute, attributeValue.toString());
+
                 });
+                response.addEntry(propertyDetails);
             }
+            return response;
         } catch (final Exception e) {
             logger.error("Unable to get response for params {}", params, e);
         }
+        return null;
     }
 }

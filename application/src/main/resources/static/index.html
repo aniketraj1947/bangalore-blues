@@ -1,12 +1,226 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Index</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bangalore Blues</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: #1f1f1f;
+            color: #00ff00;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        header {
+            text-align: center;
+            background-color: #333;
+            color: #00ff00;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            margin-top: 20px;
+        }
+
+        section {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        label {
+            font-size: 18px;
+            margin-right: 10px;
+        }
+
+        /* Apply styles to the select and button */
+        select,
+        button {
+            margin-bottom: 10px;
+        }
+
+        select {
+            padding: 10px;
+            font-size: 16px;
+            background-color: #333;
+            color: #00ff00;
+            border: 1px solid #00ff00;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #333;
+            color: #00ff00;
+            border: 1px solid #00ff00;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        button span {
+            margin-left: 5px;
+        }
+
+        button:hover {
+            background-color: #00ff00;
+            color: #333;
+        }
+
+        #map-container {
+            height: 600px; /* Adjust height as needed for the vertical layout */
+            width: 1000px; /* Adjust width as needed */
+            position: relative;
+        }
+
+        #map {
+            height: 600px; /* Adjust height as needed for the vertical layout */
+            width: 1000px; /* Adjust width as needed */
+            border: 10px solid transparent; /* Set initial transparent border */
+        }
+        /* Rest of your CSS styles */
+        .custom-label {
+            background-color: #504f4f;
+            font-family: 'Courier New', monospace;
+            color: #00ff00;
+            border: 1px solid #00ff00;
+            border-radius: 3px;
+            padding: 3px 6px;
+            font-size: 10px;
+            font-weight: bold;
+            position: absolute;
+            z-index: 100;
+            transform: translate(-50%, -100%);
+        }
+
+
+        /* Map overlay for border effect */
+        #map-overlay {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 10px solid transparent; /* Set initial transparent border */
+            border-image: linear-gradient(to bottom, #1f1f1f, transparent); /* Use gradient as the border */
+            border-image-slice: 10; /* Control the gradient transition */
+        }
+
+    </style>
 </head>
+
 <body>
-    <h1>SQL Views</h1>
-    <a href="greeting">About</a>
-    <a href="registration">Registration</a>
+<header>
+    <h1>Bangalore Blues</h1>
+    <p>Get cool insights before you choose to rent a flat!!</p>
+</header>
+
+<section>
+    <label for="locality">Select a locality:</label>
+    <!-- Corrected dropdown menu -->
+    <select id="locality" name="locality">
+        <option value="koramangala">Koramangala</option>
+        <option value="indiranagar">Indiranagar</option>
+        <option value="jayanagar">Jayanagar</option>
+        <option value="malleshwaram">Malleshwaram</option>
+        <option value="basavanagudi">Basavanagudi</option>
+        <option value="rajajinagar">Rajajinagar</option>
+        <option value="whitefield">Whitefield</option>
+        <option value="electroniccity">Electronic City</option>
+        <option value="hsr">HSR Layout</option>
+        <option value="mgroad">MG Road</option>
+        <option value="btm">BTM Layout</option>
+        <option value="marathahalli">Marathahalli</option>
+        <option value="banashankari">Banashankari</option>
+        <option value="jpnagar">JP Nagar</option>
+        <option value="hebbal">Hebbal</option>
+        <option value="yelahanka">Yelahanka</option>
+        <option value="shivajinagar">Shivajinagar</option>
+        <option value="cunninghamroad">Cunningham Road</option>
+        <option value="frazertown">Frazer Town</option>
+        <option value="bannerghattaroad">Bannerghatta Road</option>
+    </select>
+
+    <br>
+
+    <button>Let's Go <span>&#128640;</span></button>
+</section>
+
+<div id="map-container">
+    <div id="map-overlay"></div> <!-- Overlay for border effect -->
+    <div id="map" style="height: 400px;"></div> <!-- This div will contain the Google Map -->
+</div>
+<script>
+    function initMap() {
+        var centralBangalore = { lat: 12.9667, lng: 77.62 }; // Central coordinates of Bangalore
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+            center: centralBangalore,
+            zoom: 12 // Adjust the zoom level as needed
+        });
+
+
+
+        var topLocalities = [
+            { name: 'Koramangala', coordinates: { lat: 12.9352, lng: 77.6245 } },
+            { name: 'Indiranagar', coordinates: { lat: 12.9784, lng: 77.6408 } },
+            { name: 'Jayanagar', coordinates: { lat: 12.9299, lng: 77.5825 } },
+            { name: 'Malleshwaram', coordinates: { lat: 13.0055, lng: 77.5692 } },
+            { name: 'Basavanagudi', coordinates: { lat: 12.9406, lng: 77.5738 } },
+            { name: 'Rajajinagar', coordinates: { lat: 12.9882, lng: 77.5548 } },
+            { name: 'Whitefield', coordinates: { lat: 12.9698, lng: 77.7499 } },
+            { name: 'Electronic City', coordinates: { lat: 12.8456, lng: 77.6605 } },
+            { name: 'HSR Layout', coordinates: { lat: 12.9121, lng: 77.6446 } },
+            { name: 'MG Road', coordinates: { lat: 12.9743, lng: 77.6408 } },
+            { name: 'BTM Layout', coordinates: { lat: 12.9152, lng: 77.6104 } },
+            { name: 'Marathahalli', coordinates: { lat: 12.9553, lng: 77.6984 } },
+            { name: 'Banashankari', coordinates: { lat: 12.9255, lng: 77.5468 } },
+            { name: 'JP Nagar', coordinates: { lat: 12.9072, lng: 77.5907 } },
+            { name: 'Hebbal', coordinates: { lat: 13.0359, lng: 77.597 } },
+            { name: 'Yelahanka', coordinates: { lat: 13.1006, lng: 77.5968 } },
+            { name: 'Shivajinagar', coordinates: { lat: 12.9864, lng: 77.6075 } },
+            { name: 'Cunningham Road', coordinates: { lat: 12.9867, lng: 77.5958 } },
+            { name: 'Frazer Town', coordinates: { lat: 12.9985, lng: 77.6149 } },
+            { name: 'Bannerghatta Road', coordinates: { lat: 12.8876, lng: 77.597 } }
+        ];
+
+        topLocalities.forEach(function (locality, index) {
+            var marker = new google.maps.Marker({
+                position: locality.coordinates,
+                map: map,
+                icon: {
+                    url: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png', // Custom marker icon
+                },
+                label: {
+                    text: locality.name,
+                    color: '#00ff00',
+                    fontFamily: 'Courier New, monospace',
+                    fontWeight: 'bold',
+                    fontSize: '12px',
+                    className: 'custom-label',
+                    // Adjust label position using labelOrigin
+                    labelOrigin: new google.maps.Point(50, -22)
+                }
+            });
+        });
+    }
+
+    window.onload = function () {
+        initMap();
+    };
+</script>
+
+<!-- Replace 'YOUR_GOOGLE_MAPS_API_KEY' with your actual API key -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8O4aVyhMVt8gJUo9PfpyAYRTm7ykT9nM&callback=initMap" async defer></script>
 </body>
+
 </html>

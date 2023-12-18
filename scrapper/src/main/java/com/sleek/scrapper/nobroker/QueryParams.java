@@ -50,13 +50,9 @@ public final class QueryParams {
     }
 
     public QueryParams(final String city,
-                       final String locality) throws Exception {
-        this(DEFAULT_PAGE,
-                getSearchParam(city, locality),
-                DEFAULT_RADIUS,
-                city,
-                locality,
-                DEFAULT_SHARED_ACCOMMODATION);
+                       final String locality,
+                       final int page) throws Exception {
+        this(page, getSearchParam(city, locality), DEFAULT_RADIUS, city, locality, DEFAULT_SHARED_ACCOMMODATION);
     }
 
     public Map<String, String> getQueryParamsMap() {
