@@ -5,12 +5,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class IndexController implements ErrorController {
+public class ErrorIndexController implements ErrorController {
 
     private static final String PATH = "/error";
 
     @RequestMapping(value = PATH)
     public String error() {
-        return "Error handling";
+        return "Sorry, we got into an error serving your request.";
     }
 }

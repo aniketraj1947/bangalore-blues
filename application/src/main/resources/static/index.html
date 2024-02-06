@@ -125,34 +125,40 @@
 </header>
 
 <section>
-    <label for="locality">Select a locality:</label>
-    <!-- Corrected dropdown menu -->
-    <select id="locality" name="locality">
-        <option value="koramangala">Koramangala</option>
-        <option value="indiranagar">Indiranagar</option>
-        <option value="jayanagar">Jayanagar</option>
-        <option value="malleshwaram">Malleshwaram</option>
-        <option value="basavanagudi">Basavanagudi</option>
-        <option value="rajajinagar">Rajajinagar</option>
-        <option value="whitefield">Whitefield</option>
-        <option value="electroniccity">Electronic City</option>
-        <option value="hsr">HSR Layout</option>
-        <option value="mgroad">MG Road</option>
-        <option value="btm">BTM Layout</option>
-        <option value="marathahalli">Marathahalli</option>
-        <option value="banashankari">Banashankari</option>
-        <option value="jpnagar">JP Nagar</option>
-        <option value="hebbal">Hebbal</option>
-        <option value="yelahanka">Yelahanka</option>
-        <option value="shivajinagar">Shivajinagar</option>
-        <option value="cunninghamroad">Cunningham Road</option>
-        <option value="frazertown">Frazer Town</option>
-        <option value="bannerghattaroad">Bannerghatta Road</option>
-    </select>
-
+    <form id = "dropDownForLocality" action="/localityAnalytics" method="post">
+    <label for="selectedLocality">Select a locality:</label>
+        <select id="selectedLocality" name="selectedLocality">
+            <option value="Koramangala">Koramangala</option>
+            <option value="Indiranagar">Indiranagar</option>
+            <option value="Jayanagar">Jayanagar</option>
+            <option value="Malleshwaram">Malleshwaram</option>
+            <option value="Basavanagudi">Basavanagudi</option>
+            <option value="Rajajinagar">Rajajinagar</option>
+            <option value="Whitefield">Whitefield</option>
+            <option value="Electronic City">Electronic City</option>
+            <option value="HSR Layout">HSR Layout</option>
+            <option value="MG Road">MG Road</option>
+            <option value="BTM Layout">BTM Layout</option>
+            <option value="Marathahalli">Marathahalli</option>
+            <option value="Banashankari">Banashankari</option>
+            <option value="JP Nagar">JP Nagar</option>
+            <option value="Hebbal">Hebbal</option>
+            <option value="Yelahanka">Yelahanka</option>
+            <option value="Shivajinagar">Shivajinagar</option>
+            <option value="Cunningham Road">Cunningham Road</option>
+            <option value="Frazer Town">Frazer Town</option>
+            <option value="Bannerghatta Road">Bannerghatta Road</option>
+        </select>
+    </form>
     <br>
 
-    <button>Let's Go <span>&#128640;</span></button>
+    <button onclick="submitForm()">Let's Go <span>&#128640;</span></button>
+
+    <script>
+        function submitForm() {
+            document.getElementById("dropDownForLocality").submit();
+        }
+    </script>
 </section>
 
 <div id="map-container">

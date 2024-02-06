@@ -50,7 +50,9 @@ public class NoBrokerFlatRentScrapper {
 
     public NoBrokerRentResponseBuilder getResponse() {
         try {
+            final long ts = System.currentTimeMillis();
             final String apiResponseText = scrapper.getResponseForGETRequest();
+            System.out.println("time for api " + (System.currentTimeMillis() - ts));
             final Document responseDocument = Jsoup.parse(apiResponseText);
             final JSONArray jsonDataArray = (JSONArray) new JSONObject(
                     responseDocument.select(HTML_BODY)
@@ -61,15 +63,17 @@ public class NoBrokerFlatRentScrapper {
                     .get(DATA_DIV_IN_API_RESPONSE);
             final NoBrokerRentResponseBuilder response = new NoBrokerRentResponseBuilder(
                     new NoBrokerRentRequest(params.getCity(), params.getLocality()));
-
+            final long ts2 = System.currentTimeMillis();
+            System.out.println("total length " + jsonDataArray.length());
             for (int i = 0; i < jsonDataArray.length(); ++i) {
                 final int idx = i;
                 final AtomicInteger dataLen = new AtomicInteger();
                 final AtomicInteger errorLen = new AtomicInteger();
                 final Map<PropertyAttribute, String> propertyDetails = new HashMap<>();
+                final JSONObject jsonObject = new JSONObject(jsonDataArray.get(idx).toString());
                 Arrays.stream(PropertyAttribute.values()).forEach(attribute -> {
                     try {
-                        propertyDetails.put(attribute, new JSONObject(jsonDataArray.get(idx).toString()).get(attribute.getString()).toString());
+                        propertyDetails.put(attribute, jsonObject.get(attribute.getString()).toString());
                         dataLen.incrementAndGet();
                     } catch (final JSONException ignored) {
                         errorLen.incrementAndGet();
@@ -77,7 +81,10 @@ public class NoBrokerFlatRentScrapper {
 
                 });
                 response.addEntry(propertyDetails);
+                System.out.println("error stats " + dataLen.get() + " " + errorLen.get());
             }
+            System.out.println("time for loop " + (System.currentTimeMillis() - ts2));
+
             return response;
         } catch (final Exception e) {
             logger.error("Unable to get response for params {}", params, e);

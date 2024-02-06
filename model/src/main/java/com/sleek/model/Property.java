@@ -1,29 +1,38 @@
 package com.sleek.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Property {
     @Id
-    @GeneratedValue
-    private long id;
-    private String propertyName;
+    private long propertyId;
 
-    public long getId() {
-        return id;
-    }
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "ownerId")
+    private Owner owner;
 
-    public void setId(long id) {
-        this.id = id;
-    }
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "localityId")
+    private Locality locality;
 
-    public String getPropertyName() {
-        return propertyName;
-    }
+    @Column(name = "address")
+    private String address;
 
-    public void setPropertyName(String propertyName) {
-        this.propertyName = propertyName;
-    }
+    @Column(name = "location")
+    private String location;
+
+    @Column(name = "propertyType")
+    private String propertyType;
+
+    @Column(name = "monthlyRentAmount")
+    private int monthlyRentAmount;
+
+    @Column(name = "depositAmount")
+    private int depositAmount;
+
+    @Column(name = "floor")
+    private int floor;
+
+    @Column(name = "propertyScore")
+    private int propertyScore;
 }
