@@ -9,7 +9,7 @@ Bangalore-Blues is a project exploring rental property data in Bangalore. Levera
 
 ### NoBroker API
 
-Bangalore-Blues fetches rental property data using the NoBroker API. This API provides bunch of attributes available here -  [`com.sleek.scrapper.nobroker.PropertyAttribute`]([https://github.com/aniketraj1947/bangalore-blues/blob/master/scrapper/src/main/java/com/sleek/scrapper/nobroker/PropertyAttribute.java]) 
+Bangalore-Blues fetches rental property data using the NoBroker API. This API provides bunch of attributes available here -  [`com.sleek.scrapper.nobroker.PropertyAttribute`](https://github.com/aniketraj1947/bangalore-blues/blob/master/scrapper/src/main/java/com/sleek/scrapper/nobroker/PropertyAttribute.java)  
 
 ### Google Maps Endpoint
 
